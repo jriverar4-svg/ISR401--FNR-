@@ -1,7 +1,8 @@
+
 % =====================================================================
 % GA-SUM-02 | EXP-1: Técnicas de elicitación y herramientas de apoyo a la IR
 % Asignatura: Ingeniería de Requerimientos (ISR-401) - UTEQ
-% Compilar con:  pdflatex main  ->  bibtex main  ->  pdflatex main (x2)
+% Compilar con: pdflatex main -> bibtex main -> pdflatex main (x2)
 % Diseño: minimalista, morado y negro (sin tema Beamer predefinido)
 % =====================================================================
 \documentclass[aspectratio=169,11pt,t]{beamer}
@@ -20,7 +21,7 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 
-% ---------------------- DATOS DEL ESTUDIANTE (EDITAR) ----------------
+% ---------------------- DATOS DEL ESTUDIANTE ----------------
 \newcommand{\Estudiante}{[Rivera Rodriguez Joseph Jeremy]}
 \newcommand{\Correo}{[jriverar4@uteq.edu.ec]}
 \newcommand{\Semestre}{[Cuarto Semestre / Paralelo A]}
@@ -31,10 +32,10 @@
 \newcommand{\RepoURL}{https://github.com/jriverar4-svg/ISR401--FNR-.git}
 
 % ---------------------- PALETA: MORADO Y NEGRO -----------------------
-\definecolor{tinta}{HTML}{15121C}        % negro con matiz violeta
-\definecolor{acento}{HTML}{5B34B8}       % morado (sobre fondo claro)
-\definecolor{acentoclaro}{HTML}{B79CFF}  % morado claro (sobre fondo oscuro)
-\definecolor{lila}{HTML}{F1EDFA}         % tinte muy suave
+\definecolor{tinta}{HTML}{15121C}
+\definecolor{acento}{HTML}{5B34B8}
+\definecolor{acentoclaro}{HTML}{B79CFF}
+\definecolor{lila}{HTML}{F1EDFA}
 \definecolor{gris}{HTML}{6E6A7A}
 \definecolor{codigofondo}{HTML}{15121C}
 \definecolor{codigotexto}{HTML}{E9E5F5}
@@ -54,404 +55,411 @@
 \setbeamertemplate{itemize/enumerate body begin}{\setlength{\itemsep}{3pt}}
 \hypersetup{colorlinks=true,urlcolor=acento,linkcolor=acento,citecolor=acento}
 
-% Título de diapositiva: etiqueta morada pequeña + título negro + trazo corto
+% Título de diapositiva
 \setbeamertemplate{frametitle}{%
-  \vskip -0.2em
-  {\color{acento}\scriptsize\bfseries\MakeUppercase{\insertframesubtitle}}\par
-  {\color{tinta}\large\bfseries\insertframetitle\par}
-  \vskip 0.2em
-  {\color{acento}\rule{1.0cm}{1.4pt}}\par
-  \vskip 0.2em}
+	\vskip -0.2em
+	{\color{acento}\scriptsize\bfseries\MakeUppercase{\insertframesubtitle}}\par
+	{\color{tinta}\large\bfseries\insertframetitle\par}
+	\vskip 0.2em
+	{\color{acento}\rule{1.0cm}{1.4pt}}\par
+	\vskip 0.2em}
 
-% Pie de página discreto
+% Pie de página
 \setbeamertemplate{footline}{%
-  \leavevmode\hbox to\paperwidth{\hspace{1.4cm}%
-    {\color{gris}\tiny Pauly Creative's Craft \ · \ GA-SUM-02 \ · \ EXP-1}\hfill
-    {\color{gris}\tiny\insertframenumber\ / \inserttotalframenumber}\hspace{1.4cm}}%
-  \vskip 0.7em}
+	\leavevmode\hbox to\paperwidth{\hspace{1.4cm}%
+		{\color{gris}\tiny Pauly Creative's Craft \ · \ GA-SUM-02 \ · \ EXP-1}\hfill
+		{\color{gris}\tiny\insertframenumber\ / \inserttotalframenumber}\hspace{1.4cm}}%
+	\vskip 0.7em}
 
 % ---------------------- COMANDOS DE ESTRUCTURA -----------------------
 \newcommand{\etiqueta}[1]{{\color{acento}\scriptsize\bfseries\MakeUppercase{#1}}\par\vspace{3pt}}
-% Nota con filete lateral morado (sustituye a los cuadros de colores)
+
 \newcommand{\nota}[2]{\par\vspace{3pt}\noindent
-  \begin{tabular}{@{}!{\color{acento}\vrule width 2.2pt}@{\hspace{8pt}}p{\dimexpr\linewidth-14pt\relax}@{}}
-    {\color{acento}\scriptsize\bfseries\MakeUppercase{#1}}\par\vspace{1pt}#2
-  \end{tabular}\par}
-% Paso numerado en fila horizontal
+	\begin{tabular}{@{}!{\color{acento}\vrule width 2.2pt}@{\hspace{8pt}}p{\dimexpr\linewidth-14pt\relax}@{}}
+		{\color{acento}\scriptsize\bfseries\MakeUppercase{#1}}\par\vspace{1pt}#2
+	\end{tabular}\par}
+
 \newcommand{\paso}[2]{\parbox[t]{0.178\textwidth}{\raggedright\color{acento}\large\bfseries #1\par\vspace{2pt}\color{tinta}\scriptsize #2}}
-% Conclusión numerada
+
 \newcommand{\conc}[2]{{\color{acento}\large\bfseries #1}\par\vspace{2pt}{\small #2}\par\vspace{9pt}}
 
-% ---------------------- LISTINGS (.sdoc) sobre fondo oscuro ----------
+% ---------------------- LISTINGS (.sdoc) ------------------------------
 \lstdefinestyle{sdoc}{
-  basicstyle=\ttfamily\fontsize{7}{8.3}\selectfont\color{codigotexto},
-  backgroundcolor=\color{codigofondo},
-  frame=none, xleftmargin=6pt, xrightmargin=6pt,
-  framexleftmargin=6pt, framexrightmargin=6pt,
-  framextopmargin=5pt, framexbottommargin=5pt,
-  columns=flexible, keepspaces=true, showstringspaces=false, breaklines=true,
-  keywordstyle=\bfseries\color{acentoclaro},
-  morekeywords={UID,TITLE,TAGS,STATEMENT,RELATIONS,TYPE,VALUE},
-  moredelim=[s][\bfseries\color{acentoclaro}]{[}{]},
-  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
-           {ñ}{{\~n}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1
-           {Ú}{{\'U}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 {¡}{{!`}}1
+	basicstyle=\ttfamily\fontsize{7}{8.3}\selectfont\color{codigotexto},
+	backgroundcolor=\color{codigofondo},
+	frame=none, xleftmargin=6pt, xrightmargin=6pt,
+	framexleftmargin=6pt, framexrightmargin=6pt,
+	framextopmargin=5pt, framexbottommargin=5pt,
+	columns=flexible, keepspaces=true, showstringspaces=false, breaklines=true,
+	keywordstyle=\bfseries\color{acentoclaro},
+	morekeywords={UID,TITLE,TAGS,STATEMENT,RELATIONS,TYPE,VALUE},
+	moredelim=[s][\bfseries\color{acentoclaro}]{[}{]},
+	literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+	{ñ}{{\~n}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1
+	{Ú}{{\'U}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 {¡}{{!`}}1
 }
-\lstdefinestyle{shell}{basicstyle=\ttfamily\fontsize{7}{8.3}\selectfont\color{codigotexto},backgroundcolor=\color{codigofondo},frame=none,xleftmargin=6pt,xrightmargin=6pt,framexleftmargin=6pt,framexrightmargin=6pt,framextopmargin=5pt,framexbottommargin=5pt,columns=flexible,showstringspaces=false}
+
+\lstdefinestyle{shell}{
+	basicstyle=\ttfamily\fontsize{7}{8.3}\selectfont\color{codigotexto},
+	backgroundcolor=\color{codigofondo},
+	frame=none,xleftmargin=6pt,xrightmargin=6pt,
+	framexleftmargin=6pt,framexrightmargin=6pt,
+	framextopmargin=5pt,framexbottommargin=5pt,
+	columns=flexible,showstringspaces=false
+}
 
 % ---------------------- CAPTURAS OPCIONALES ---------------------------
-% \captura[ancho]{archivo}{descripción}: si no existe el archivo, deja un marcador.
 \newcommand{\captura}[3][0.98]{%
-  \IfFileExists{#2}{%
-    \includegraphics[width=#1\linewidth,height=0.48\textheight,keepaspectratio]{#2}}{%
-    \colorbox{lila}{\parbox[c][0.36\textheight][c]{#1\linewidth}{\centering
-      \scriptsize\color{gris}[Insertar captura]\\ #3\\ \texttt{#2}}}}}
+	\IfFileExists{#2}{%
+		\includegraphics[width=#1\linewidth,height=0.48\textheight,keepaspectratio]{#2}}{%
+		\colorbox{lila}{\parbox[c][0.36\textheight][c]{#1\linewidth}{\centering
+				\scriptsize\color{gris}[Insertar captura]\\ #3\\ \texttt{#2}}}}}
 
 \begin{document}
-
-% ===================== 1. PORTADA (fondo negro) ======================
-{\setbeamercolor{background canvas}{bg=tinta}
-\begin{frame}[plain]
-  \vspace{0.1cm}
-  {\color{acentoclaro}\scriptsize\bfseries\MakeUppercase{UTEQ \ · \ Ingeniería de Requerimientos (ISR-401)}}\par
-  \vspace{0.35cm}
-  {\color{white}\fontsize{19}{23}\selectfont\bfseries Técnicas de elicitación y\\ herramientas automatizadas de apoyo\\ a la Ingeniería de Requerimientos\par}
-  \vspace{0.25cm}
-  {\color{acentoclaro}\rule{2.2cm}{2pt}}\par
-  \vspace{0.2cm}
-  {\color{codigotexto}\normalsize GA-SUM-02 · EXP-1 · Presentación del 1.\textsuperscript{er} corte\\
-   Demostración con StrictDoc sobre el PFC Pauly Creative's Craft\par}
-  \vfill
-  \renewcommand{\arraystretch}{1.25}
-  \begin{tabular}{@{}>{\color{acentoclaro}\tiny\bfseries}p{1.8cm}>{\color{white}\footnotesize}p{5.0cm}>{\color{acentoclaro}\tiny\bfseries}p{1.3cm}>{\color{white}\footnotesize}p{4.6cm}@{}}
-    ESTUDIANTE & \Estudiante & DOCENTE & \Docente\\
-    CORREO & \Correo & EQUIPO & \Equipo\\
-    CARRERA & \Carrera\ · \Semestre & FECHA & \Fecha\\
-  \end{tabular}
-  \vspace{0.1cm}
-\end{frame}}
-
-% ===================== 2. CONTENIDO =================================
-\begin{frame}{Contenido}{Agenda}
-  \begin{columns}[T]
-    \column{0.46\textwidth}
-    {\color{acento}\large\bfseries 01}\hspace{10pt}Introducción y propósito\par\vspace{12pt}
-    {\color{acento}\large\bfseries 02}\hspace{10pt}Contexto del PFC\par\vspace{12pt}
-    {\color{acento}\large\bfseries 03}\hspace{10pt}Parte A · Técnicas de elicitación\par\vspace{12pt}
-    {\color{acento}\large\bfseries 04}\hspace{10pt}Parte B · Herramientas de apoyo a la IR\par\vspace{12pt}
-    \column{0.46\textwidth}
-    {\color{acento}\large\bfseries 05}\hspace{10pt}Parte C · Recomendación para el PFC\par\vspace{12pt}
-    {\color{acento}\large\bfseries 06}\hspace{10pt}Parte D · Demostración con StrictDoc\par\vspace{12pt}
-    {\color{acento}\large\bfseries 07}\hspace{10pt}Conclusiones\par\vspace{12pt}
-    {\color{acento}\large\bfseries 08}\hspace{10pt}Uso de IA y referencias\par\vspace{12pt}
-  \end{columns}
-\end{frame}
-
-% ===================== 3. INTRODUCCIÓN ===============================
-\begin{frame}{Introducción y propósito}{Introducción}
-  \begin{columns}[T]
-    \column{0.36\textwidth}
-    \vspace{6pt}
-    {\fontsize{22}{26}\selectfont\bfseries Elicitar bien,\\ y \textcolor{acento}{trazar}\\ lo elicitado.\par}
-    \column{0.58\textwidth}
-    \small
-    \begin{enumerate}
-      \item La elicitación es una actividad central de la IR: descubrir y entender las necesidades de los interesados \cite{pohl2025}.
-      \item IREB propone elegir las técnicas según el interesado, la fuente de información y el conocimiento que se busca \cite{ireb2026}.
-      \item Sin herramientas de apoyo, los requisitos se dispersan y se pierde la trazabilidad \cite{wiegers2013}.
-    \end{enumerate}
-  \end{columns}
-  \nota{Propósito}{\small Describir técnicas de elicitación, comparar herramientas de apoyo a la IR y demostrar \textbf{StrictDoc} sobre mi PFC.}
-\end{frame}
-
-% ===================== 4. CONTEXTO PFC ===============================
-\begin{frame}{Pauly Creative's Craft}{Contexto del PFC}
-  \begin{columns}[T]
-    \column{0.30\textwidth}
-    \etiqueta{Organización}\small Local de manualidades en Quevedo, Los Ríos.\par\vspace{8pt}
-    \etiqueta{Usuaria única}\small PI-01 (propietaria): administra el negocio, recibe pedidos, registra abonos y entregas.
-    \column{0.30\textwidth}
-    \etiqueta{Solución}\small Aplicación web para clientes, proveedores, productos, ventas, pagos, abonos y entregas.\par\vspace{8pt}
-    \etiqueta{Foco crítico}\small Seguimiento de pedidos personalizados, de la solicitud a la entrega.
-    \column{0.30\textwidth}
-    \etiqueta{Técnicas aplicadas en el PFC}
-    \small
-    \begin{enumerate}
-      \item Entrevista semiestructurada a PI-01
-      \item Observación no participante a PI-01
-      \item Cuestionarios a clientes
-    \end{enumerate}
-  \end{columns}
-\end{frame}
-
-% ===================== 5. ENTREVISTA =================================
-\begin{frame}{Entrevista semiestructurada}{Parte A · Elicitación}
-  \etiqueta{Pasos}
-  \noindent\paso{01}{Definir objetivos y preparar un guion base}\hfill
-  \paso{02}{Agendar y explicar el propósito a PI-01}\hfill
-  \paso{03}{Conducir con preguntas abiertas y repreguntas}\hfill
-  \paso{04}{Registrar con notas o audio, con consentimiento}\hfill
-  \paso{05}{Resumir y validar lo entendido con PI-01}
-  \vspace{10pt}
-  \begin{columns}[T]
-    \column{0.29\textwidth}
-    \etiqueta{Ventajas}
-    \footnotesize\begin{itemize}
-      \item Profundidad y flexibilidad
-      \item Aclara dudas en el momento
-      \item Construye relación con la usuaria
-    \end{itemize}
-    \column{0.29\textwidth}
-    \etiqueta{Limitaciones}
-    \footnotesize\begin{itemize}
-      \item Depende de la memoria y subjetividad de PI-01
-      \item No capta el conocimiento tácito
-      \item Exige tiempo de preparación y análisis
-    \end{itemize}
-    \column{0.29\textwidth}
-    \etiqueta{Cuándo usarla}
-    \footnotesize Al inicio, para entender el dominio y los objetivos. En el PFC: cómo PI-01 recibe pedidos y registra abonos.
-  \end{columns}
-\end{frame}
-
-% ===================== 6. OBSERVACIÓN ================================
-\begin{frame}{Observación no participante}{Parte A · Elicitación}
-  \etiqueta{Pasos}
-  \noindent\paso{01}{Definir el foco, p. ej., el ciclo de un pedido}\hfill
-  \paso{02}{Obtener la autorización de PI-01}\hfill
-  \paso{03}{Observar sin intervenir en su trabajo}\hfill
-  \paso{04}{Registrar en una hoja de observación}\hfill
-  \paso{05}{Analizar y contrastar con la entrevista}
-  \vspace{10pt}
-  \begin{columns}[T]
-    \column{0.29\textwidth}
-    \etiqueta{Ventajas}
-    \footnotesize\begin{itemize}
-      \item Revela el proceso real, no el declarado
-      \item Descubre conocimiento tácito
-      \item Detecta excepciones y retrabajo
-    \end{itemize}
-    \column{0.29\textwidth}
-    \etiqueta{Limitaciones}
-    \footnotesize\begin{itemize}
-      \item La presencia puede alterar el comportamiento
-      \item No explica los motivos por sí sola
-      \item Interpretación subjetiva y costosa en tiempo
-    \end{itemize}
-    \column{0.29\textwidth}
-    \etiqueta{Cuándo usarla}
-    \footnotesize En procesos operativos y tácitos. En el PFC: cómo PI-01 anota hoy abonos y estados de pedidos.
-  \end{columns}
-\end{frame}
-
-% ===================== 7. COMPLEMENTO ================================
-\begin{frame}{Cómo se complementan}{Parte A · Elicitación}
-  \small
-  \renewcommand{\arraystretch}{1.2}
-  \setlength{\tabcolsep}{5pt}
-  \begin{tabular}{@{}p{3.0cm}p{3.7cm}p{3.1cm}p{2.7cm}@{}}
-    \toprule
-    {\color{acento}\bfseries Técnica} & {\color{acento}\bfseries Obtiene} & {\color{acento}\bfseries Fuente en el PFC} & {\color{acento}\bfseries Riesgo}\\
-    \midrule
-    Entrevista semiestructurada & Necesidades, reglas y expectativas declaradas & PI-01 & Sesgo y olvido\\
-    Observación no participante & Flujo real y conocimiento tácito & PI-01 en su trabajo diario & Efecto del observador\\
-    Cuestionario & Opiniones de muchos interesados & Clientes & Respuestas superficiales\\
-    \bottomrule
-  \end{tabular}
-  \nota{Triangulación}{\small Contrastar lo dicho (entrevista), lo hecho (observación) y lo esperado por los clientes (cuestionario) reduce omisiones y contradicciones \cite{pohl2025,ireb2026}.}
-\end{frame}
-
-% ===================== 8. COMPARACIÓN ================================
-\begin{frame}{Jira y Enterprise Architect frente a StrictDoc}{Parte B · Herramientas de apoyo a la IR}
-  \scriptsize
-  \renewcommand{\arraystretch}{1.12}
-  \setlength{\tabcolsep}{4pt}
-  \arrayrulecolor{gris!40}
-  \begin{tabular}{@{}p{2.1cm}p{5.1cm}p{5.4cm}@{}}
-    \toprule
-    & {\color{acento}\bfseries Jira / Enterprise Architect} & {\color{acento}\bfseries StrictDoc}\\
-    \midrule
-    {\bfseries Enfoque} & Jira: incidencias y ALM. EA: modelado y repositorio de requisitos & Requisitos y especificaciones como documentos de texto\\
-    {\bfseries Formato} & Repositorio propio (base de datos o modelo) & Texto plano estructurado (\texttt{.sdoc})\\
-    {\bfseries Funciones} & Flujos de trabajo, tableros, UML, matrices y reportes & Edición en texto o interfaz web, exportación (HTML y otros), relaciones\\
-    {\bfseries Trazabilidad} & Enlaces entre tickets o elementos; vistas según la herramienta & Relaciones padre-hijo en texto y vistas generadas automáticamente\\
-    {\bfseries Versionado} & Historial propio de la herramienta & Git: ramas, \emph{diff}, historial y revisión\\
-    {\bfseries Madurez} & Alta: amplia adopción y ecosistema & Menor: proyecto abierto, joven y en evolución\\
-    {\bfseries Costo y curva} & Licencias o suscripción; curva media-alta & Código abierto; curva baja si se conoce Git y la terminal\\
-    \bottomrule
-  \end{tabular}
-  \vspace{2pt}\par
-  {\color{gris}\tiny Elaboración propia a partir de \cite{wiegers2013,strictdocdocs}. Verificar versiones y licencias vigentes.}
-\end{frame}
-
-% ===================== 9. STRICTDOC ==================================
-\begin{frame}{¿Cómo funciona StrictDoc?}{Parte B · Herramientas de apoyo a la IR}
-  \vspace{4pt}
-  \begin{center}
-  \begin{tikzpicture}[node distance=0.9cm,
-      caja/.style={draw=tinta,thin,align=center,minimum height=1.0cm,minimum width=2.6cm,font=\scriptsize},
-      fin/.style={caja,fill=acento,draw=acento,text=white},
-      flecha/.style={-{Stealth[length=2mm]},thin,color=tinta}]
-    \node[caja] (a) {Archivos \texttt{.sdoc}\\texto plano};
-    \node[caja,right=of a] (b) {Git / GitHub\\historial y revisión};
-    \node[caja,right=of b] (c) {\texttt{strictdoc}\\export / server};
-    \node[fin,right=of c] (d) {HTML y vistas\\de trazabilidad};
-    \draw[flecha] (a)--(b); \draw[flecha] (b)--(c); \draw[flecha] (c)--(d);
-  \end{tikzpicture}
-  \end{center}
-  \vspace{6pt}
-  \begin{columns}[T]
-    \column{0.30\textwidth}
-    {\color{acento}\large\bfseries 01}\par\small Cada elemento tiene \texttt{UID}, título, enunciado y relaciones \cite{strictdocdocs}.
-    \column{0.30\textwidth}
-    {\color{acento}\large\bfseries 02}\par\small Los cambios se revisan como código: \emph{commit}, \emph{diff} y \emph{pull request} \cite{strictdocrepo}.
-    \column{0.30\textwidth}
-    {\color{acento}\large\bfseries 03}\par\small La trazabilidad se genera al exportar, sin matrices manuales.
-  \end{columns}
-\end{frame}
-
-% ===================== 10. RECOMENDACIÓN =============================
-\begin{frame}{Recomendación para el PFC}{Parte C · Recomendación}
-  {\fontsize{16}{20}\selectfont\bfseries Usar \textcolor{acento}{StrictDoc} como herramienta de apoyo a la IR de Pauly Creative's Craft.\par}
-  \vspace{6pt}
-  \begin{columns}[T]
-    \column{0.47\textwidth}
-    \etiqueta{Por qué}
-    \small\begin{itemize}
-      \item Un equipo y una usuaria: Jira o EA serían sobredimensionados
-      \item Costo cero; el PFC ya usa Git y GitHub
-      \item Trazabilidad N → RF → CP verificable y versionada
-      \item Requisitos exportables y revisables por el docente
-    \end{itemize}
-    \column{0.47\textwidth}
-    \etiqueta{Riesgos y mitigación}
-    \small\begin{itemize}
-      \item PI-01 no es técnica: no edita \texttt{.sdoc}; valida la vista HTML exportada
-      \item Menor madurez: fijar la versión instalada y respaldar en GitHub
-      \item Curva en terminal: guía breve de comandos en el repositorio
-    \end{itemize}
-  \end{columns}
-\end{frame}
-
-% ===================== 11. DEMO 1 ====================================
-\begin{frame}[fragile]{N-01 y RF-01 en formato \texttt{.sdoc}}{Parte D · Demostración}
-  \begin{columns}[T]
-    \column{0.45\textwidth}
-    \etiqueta{Necesidad}
-\begin{lstlisting}[style=sdoc]
-[DOCUMENT]
-TITLE: Pauly Creative's Craft
-
-[REQUIREMENT]
-UID: N-01
-TAGS: Necesidad
-TITLE: Seguimiento de pedidos
-STATEMENT: >>>
-PI-01 necesita conocer el estado
-de cada pedido personalizado,
-desde la solicitud hasta la
-entrega.
-<<<
-\end{lstlisting}
-    \column{0.47\textwidth}
-    \etiqueta{Requisito funcional}
-\begin{lstlisting}[style=sdoc]
-[REQUIREMENT]
-UID: RF-01
-TAGS: Funcional
-TITLE: Registrar pedido
-STATEMENT: >>>
-El sistema debe permitir a PI-01
-registrar un pedido personalizado
-con cliente, descripción, fecha de
-entrega, precio y estado inicial.
-<<<
-RELATIONS:
-- TYPE: Parent
-  VALUE: N-01
-\end{lstlisting}
-  \end{columns}
-\end{frame}
-
-% ===================== 12. DEMO 2 ====================================
-\begin{frame}[fragile]{CP-01 y comandos}{Parte D · Demostración}
-  \begin{columns}[T]
-    \column{0.58\textwidth}
-\begin{lstlisting}[style=sdoc]
-[REQUIREMENT]
-UID: CP-01
-TAGS: Prueba
-TITLE: Registrar pedido con datos válidos
-STATEMENT: >>>
-Dado que PI-01 ingresa cliente, descripción, fecha y precio
-válidos, cuando guarda el pedido, entonces el sistema lo
-registra con estado "Solicitado".
-<<<
-RELATIONS:
-- TYPE: Parent
-  VALUE: RF-01
-\end{lstlisting}
-    \column{0.36\textwidth}
-    \etiqueta{Comandos}
-\begin{lstlisting}[style=shell]
-pip install strictdoc
-strictdoc --version
-strictdoc export .
-strictdoc server .
-\end{lstlisting}
-    \vspace{8pt}
-    \etiqueta{Cadena de trazabilidad}
-    {\small N-01 $\leftarrow$ RF-01 $\leftarrow$ CP-01\par}
-  \end{columns}
-\end{frame}
-
-% ===================== 13. CAPTURAS ==================================
-\begin{frame}{Resultados en StrictDoc}{Parte D · Demostración}
-	\begin{columns}[T]
-		\column{0.47\textwidth}
-		\centering
-		\captura{evidencias/captura-export-html.png}{documento exportado con N-01, RF-01 y CP-01}\par
-		{\color{gris}\scriptsize Figura 1. Documento exportado en HTML}
-		\column{0.47\textwidth}
-		\centering
-		\captura{evidencias/captura-trazabilidad.png}{vista de trazabilidad N-01, RF-01, CP-01}\par
-		{\color{gris}\scriptsize Figura 2. Vista de trazabilidad}
-	\end{columns}
-	\vspace{8pt}
-	{\color{gris}\scriptsize Repositorio: \texttt{\RepoURL}}
-\end{frame}
-
-% ===================== 14. CONCLUSIONES ==============================
-\begin{frame}{Conclusiones}{Cierre}
-  \vspace{4pt}
-  \begin{columns}[T]
-    \column{0.45\textwidth}
-    \conc{01}{Entrevista y observación se complementan: lo declarado frente a lo realmente hecho.}
-    \conc{02}{Los cuestionarios a clientes amplían el alcance de los requisitos.}
-    \column{0.45\textwidth}
-    \conc{03}{Las herramientas CASE aportan madurez; StrictDoc aporta ligereza, versionado y trazabilidad automática.}
-    \conc{04}{Para Pauly Creative's Craft, StrictDoc es adecuada, mitigando sus riesgos.}
-  \end{columns}
-\end{frame}
-
-% ===================== 15. USO DE IA =================================
-\begin{frame}{Declaración de uso de IA como apoyo}{Normativa UTEQ}
-  \begin{columns}[T]
-    \column{0.44\textwidth}
-    \etiqueta{Herramienta}\small Claude (Anthropic), interfaz web.\par\vspace{8pt}
-    \etiqueta{Versión}\small Claude Sonnet 5.5, noviembre de 2026.\par\vspace{8pt}
-    \etiqueta{Propósito}\small Apoyo en la estructura de la presentación, la redacción inicial y el código LaTeX/Beamer.
-    \column{0.46\textwidth}
-    \etiqueta{Verificación}\small Contraste de las fuentes bibliográficas, prueba real de StrictDoc y revisión del contenido frente al PFC por el estudiante.\par\vspace{8pt}
-    \etiqueta{Responsabilidad}\small El contenido final es responsabilidad del estudiante.
-  \end{columns}
-\end{frame}
-
-% ===================== 16. REFERENCIAS ===============================
-\begin{frame}[allowframebreaks]{Referencias}{Formato IEEE}
-  \footnotesize
-  \bibliographystyle{IEEEtran}
-  \bibliography{referencias}
-\end{frame}
-
+	
+	% ===================== 1. PORTADA ====================================
+	{\setbeamercolor{background canvas}{bg=tinta}
+		\begin{frame}[plain]
+			\vspace{0.1cm}
+			{\color{acentoclaro}\scriptsize\bfseries\MakeUppercase{UTEQ \ · \ Ingeniería de Requerimientos (ISR-401)}}\par
+			\vspace{0.35cm}
+			{\color{white}\fontsize{19}{23}\selectfont\bfseries Técnicas de elicitación y\\ herramientas automatizadas de apoyo\\ a la Ingeniería de Requerimientos\par}
+			\vspace{0.25cm}
+			{\color{acentoclaro}\rule{2.2cm}{2pt}}\par
+			\vspace{0.2cm}
+			{\color{codigotexto}\normalsize GA-SUM-02 · EXP-1 · Presentación del 1.\textsuperscript{er} corte\\
+				Demostración con StrictDoc sobre el PFC Pauly Creative's Craft\par}
+			\vfill
+			\renewcommand{\arraystretch}{1.25}
+			\begin{tabular}{@{}>{\color{acentoclaro}\tiny\bfseries}p{1.8cm}>{\color{white}\footnotesize}p{5.0cm}>{\color{acentoclaro}\tiny\bfseries}p{1.3cm}>{\color{white}\footnotesize}p{4.6cm}@{}}
+				ESTUDIANTE & \Estudiante & DOCENTE & \Docente\\
+				CORREO & \Correo & EQUIPO & \Equipo\\
+				CARRERA & \Carrera\ · \Semestre & FECHA & \Fecha\\
+			\end{tabular}
+			\vspace{0.1cm}
+	\end{frame}}
+	
+	% ===================== 2. CONTENIDO =================================
+	\begin{frame}{Contenido}{Agenda}
+		\begin{columns}[T]
+			\column{0.46\textwidth}
+			{\color{acento}\large\bfseries 01}\hspace{10pt}Introducción y propósito\par\vspace{12pt}
+			{\color{acento}\large\bfseries 02}\hspace{10pt}Contexto del PFC\par\vspace{12pt}
+			{\color{acento}\large\bfseries 03}\hspace{10pt}Parte A · Técnicas de elicitación\par\vspace{12pt}
+			{\color{acento}\large\bfseries 04}\hspace{10pt}Parte B · Herramientas de apoyo a la IR\par\vspace{12pt}
+			\column{0.46\textwidth}
+			{\color{acento}\large\bfseries 05}\hspace{10pt}Parte C · Recomendación para el PFC\par\vspace{12pt}
+			{\color{acento}\large\bfseries 06}\hspace{10pt}Parte D · Demostración con StrictDoc\par\vspace{12pt}
+			{\color{acento}\large\bfseries 07}\hspace{10pt}Conclusiones\par\vspace{12pt}
+			{\color{acento}\large\bfseries 08}\hspace{10pt}Uso de IA y referencias\par\vspace{12pt}
+		\end{columns}
+	\end{frame}
+	
+	% ===================== 3. INTRODUCCIÓN ===============================
+	\begin{frame}{Introducción y propósito}{Introducción}
+		\begin{columns}[T]
+			\column{0.36\textwidth}
+			\vspace{6pt}
+			{\fontsize{22}{26}\selectfont\bfseries Elicitar bien,\\ y \textcolor{acento}{trazar}\\ lo elicitado.\par}
+			\column{0.58\textwidth}
+			\small
+			\begin{enumerate}
+				\item La elicitación es una actividad central de la IR: descubrir y entender las necesidades de los interesados \cite{pacheco2018,ferrari2022}.
+				\item IREB propone elegir las técnicas según el interesado, la fuente de información y el conocimiento que se busca \cite{ireb2024}.
+				\item Sin herramientas de apoyo, los requisitos se dispersan y se pierde la trazabilidad \cite{mucha2024}.
+			\end{enumerate}
+		\end{columns}
+		\nota{Propósito}{\small Describir técnicas de elicitación, comparar herramientas de apoyo a la IR y demostrar \textbf{StrictDoc} sobre mi PFC.}
+	\end{frame}
+	
+	% ===================== 4. CONTEXTO PFC ===============================
+	\begin{frame}{Pauly Creative's Craft}{Contexto del PFC}
+		\begin{columns}[T]
+			\column{0.30\textwidth}
+			\etiqueta{Organización}\small Local de manualidades en Quevedo, Los Ríos.\par\vspace{8pt}
+			\etiqueta{Usuaria única}\small PI-01 (propietaria): administra el negocio, recibe pedidos, registra abonos y entregas.
+			\column{0.30\textwidth}
+			\etiqueta{Solución}\small Aplicación web para clientes, proveedores, productos, ventas, pagos, abonos y entregas.\par\vspace{8pt}
+			\etiqueta{Foco crítico}\small Seguimiento de pedidos personalizados, de la solicitud a la entrega.
+			\column{0.30\textwidth}
+			\etiqueta{Técnicas aplicadas en el PFC}
+			\small
+			\begin{enumerate}
+				\item Entrevista semiestructurada a PI-01
+				\item Observación no participante a PI-01
+				\item Cuestionarios a clientes
+			\end{enumerate}
+		\end{columns}
+	\end{frame}
+	
+	% ===================== 5. ENTREVISTA =================================
+	\begin{frame}{Entrevista semiestructurada}{Parte A · Elicitación}
+		\etiqueta{Pasos}
+		\noindent\paso{01}{Definir objetivos y preparar un guion base}\hfill
+		\paso{02}{Agendar y explicar el propósito a PI-01}\hfill
+		\paso{03}{Conducir con preguntas abiertas y repreguntas}\hfill
+		\paso{04}{Registrar con notas o audio, con consentimiento}\hfill
+		\paso{05}{Resumir y validar lo entendido con PI-01}
+		\vspace{10pt}
+		\begin{columns}[T]
+			\column{0.29\textwidth}
+			\etiqueta{Ventajas}
+			\footnotesize\begin{itemize}
+				\item Profundidad y flexibilidad
+				\item Aclara dudas en el momento
+				\item Construye relación con la usuaria
+			\end{itemize}
+			\column{0.29\textwidth}
+			\etiqueta{Limitaciones}
+			\footnotesize\begin{itemize}
+				\item Depende de la memoria y subjetividad de PI-01
+				\item No capta el conocimiento tácito
+				\item Exige tiempo de preparación y análisis
+			\end{itemize}
+			\column{0.29\textwidth}
+			\etiqueta{Cuándo usarla}
+			\footnotesize Al inicio, para entender el dominio y los objetivos. En el PFC: cómo PI-01 recibe pedidos y registra abonos.
+		\end{columns}
+	\end{frame}
+	
+	% ===================== 6. OBSERVACIÓN ================================
+	\begin{frame}{Observación no participante}{Parte A · Elicitación}
+		\etiqueta{Pasos}
+		\noindent\paso{01}{Definir el foco, p. ej., el ciclo de un pedido}\hfill
+		\paso{02}{Obtener la autorización de PI-01}\hfill
+		\paso{03}{Observar sin intervenir en su trabajo}\hfill
+		\paso{04}{Registrar en una hoja de observación}\hfill
+		\paso{05}{Analizar y contrastar con la entrevista}
+		\vspace{10pt}
+		\begin{columns}[T]
+			\column{0.29\textwidth}
+			\etiqueta{Ventajas}
+			\footnotesize\begin{itemize}
+				\item Revela el proceso real, no el declarado
+				\item Descubre conocimiento tácito
+				\item Detecta excepciones y retrabajo
+			\end{itemize}
+			\column{0.29\textwidth}
+			\etiqueta{Limitaciones}
+			\footnotesize\begin{itemize}
+				\item La presencia puede alterar el comportamiento
+				\item No explica los motivos por sí sola
+				\item Interpretación subjetiva y costosa en tiempo
+			\end{itemize}
+			\column{0.29\textwidth}
+			\etiqueta{Cuándo usarla}
+			\footnotesize En procesos operativos y tácitos. En el PFC: cómo PI-01 anota hoy abonos y estados de pedidos.
+		\end{columns}
+	\end{frame}
+	
+	% ===================== 7. COMPLEMENTO ================================
+	\begin{frame}{Cómo se complementan}{Parte A · Elicitación}
+		\small
+		\renewcommand{\arraystretch}{1.2}
+		\setlength{\tabcolsep}{5pt}
+		\begin{tabular}{@{}p{3.0cm}p{3.7cm}p{3.1cm}p{2.7cm}@{}}
+			\toprule
+			{\color{acento}\bfseries Técnica} & {\color{acento}\bfseries Obtiene} & {\color{acento}\bfseries Fuente en el PFC} & {\color{acento}\bfseries Riesgo}\\
+			\midrule
+			Entrevista semiestructurada & Necesidades, reglas y expectativas declaradas & PI-01 & Sesgo y olvido\\
+			Observación no participante & Flujo real y conocimiento tácito & PI-01 en su trabajo diario & Efecto del observador\\
+			Cuestionario & Opiniones de muchos interesados & Clientes & Respuestas superficiales\\
+			\bottomrule
+		\end{tabular}
+		\nota{Triangulación}{\small Contrastar lo dicho (entrevista), lo hecho (observación) y lo esperado por los clientes (cuestionario) reduce omisiones y contradicciones \cite{pacheco2018,canche2021,ireb2024}.}
+	\end{frame}
+	
+	% ===================== 8. COMPARACIÓN ================================
+	\begin{frame}{Jira y Enterprise Architect frente a StrictDoc}{Parte B · Herramientas de apoyo a la IR}
+		\scriptsize
+		\renewcommand{\arraystretch}{1.12}
+		\setlength{\tabcolsep}{4pt}
+		\arrayrulecolor{gris!40}
+		\begin{tabular}{@{}p{2.1cm}p{5.1cm}p{5.4cm}@{}}
+			\toprule
+			& {\color{acento}\bfseries Jira / Enterprise Architect} & {\color{acento}\bfseries StrictDoc}\\
+			\midrule
+			{\bfseries Enfoque} & Jira: incidencias y ALM. EA: modelado y repositorio de requisitos & Requisitos y especificaciones como documentos de texto\\
+			{\bfseries Formato} & Repositorio propio (base de datos o modelo) & Texto plano estructurado (\texttt{.sdoc})\\
+			{\bfseries Funciones} & Flujos de trabajo, tableros, UML, matrices y reportes & Edición en texto o interfaz web, exportación (HTML y otros), relaciones\\
+			{\bfseries Trazabilidad} & Enlaces entre tickets o elementos; vistas según la herramienta & Relaciones padre-hijo en texto y vistas generadas automáticamente\\
+			{\bfseries Versionado} & Historial propio de la herramienta & Git: ramas, \emph{diff}, historial y revisión\\
+			{\bfseries Madurez} & Alta: amplia adopción y ecosistema & Menor: proyecto abierto, joven y en evolución\\
+			{\bfseries Costo y curva} & Licencias o suscripción; curva media-alta & Código abierto; curva baja si se conoce Git y la terminal\\
+			\bottomrule
+		\end{tabular}
+		\vspace{2pt}\par
+		{\color{gris}\tiny Elaboración propia a partir de \cite{wang2018,mucha2024,strictdocdocs}. Verificar versiones y licencias vigentes.}
+	\end{frame}
+	
+	% ===================== 9. STRICTDOC ==================================
+	\begin{frame}{¿Cómo funciona StrictDoc?}{Parte B · Herramientas de apoyo a la IR}
+		\vspace{4pt}
+		\begin{center}
+			\begin{tikzpicture}[node distance=0.9cm,
+				caja/.style={draw=tinta,thin,align=center,minimum height=1.0cm,minimum width=2.6cm,font=\scriptsize},
+				fin/.style={caja,fill=acento,draw=acento,text=white},
+				flecha/.style={-{Stealth[length=2mm]},thin,color=tinta}]
+				\node[caja] (a) {Archivos \texttt{.sdoc}\\texto plano};
+				\node[caja,right=of a] (b) {Git / GitHub\\historial y revisión};
+				\node[caja,right=of b] (c) {\texttt{strictdoc}\\export / server};
+				\node[fin,right=of c] (d) {HTML y vistas\\de trazabilidad};
+				\draw[flecha] (a)--(b); \draw[flecha] (b)--(c); \draw[flecha] (c)--(d);
+			\end{tikzpicture}
+		\end{center}
+		\vspace{6pt}
+		\begin{columns}[T]
+			\column{0.30\textwidth}
+			{\color{acento}\large\bfseries 01}\par\small Cada elemento tiene \texttt{UID}, título, enunciado y relaciones \cite{strictdocdocs}.
+			\column{0.30\textwidth}
+			{\color{acento}\large\bfseries 02}\par\small Los cambios se revisan como código: \emph{commit}, \emph{diff} y \emph{pull request} \cite{strictdocrepo}.
+			\column{0.30\textwidth}
+			{\color{acento}\large\bfseries 03}\par\small La trazabilidad se genera al exportar, sin matrices manuales.
+		\end{columns}
+	\end{frame}
+	
+	% ===================== 10. RECOMENDACIÓN =============================
+	\begin{frame}{Recomendación para el PFC}{Parte C · Recomendación}
+		{\fontsize{16}{20}\selectfont\bfseries Usar \textcolor{acento}{StrictDoc} como herramienta de apoyo a la IR de Pauly Creative's Craft.\par}
+		\vspace{6pt}
+		\begin{columns}[T]
+			\column{0.47\textwidth}
+			\etiqueta{Por qué}
+			\small\begin{itemize}
+				\item Un equipo y una usuaria: Jira o EA serían sobredimensionados
+				\item Costo cero; el PFC ya usa Git y GitHub
+				\item Trazabilidad N → RF → CP verificable y versionada
+				\item Requisitos exportables y revisables por el docente
+			\end{itemize}
+			\column{0.47\textwidth}
+			\etiqueta{Riesgos y mitigación}
+			\small\begin{itemize}
+				\item PI-01 no es técnica: no edita \texttt{.sdoc}; valida la vista HTML exportada
+				\item Menor madurez: fijar la versión instalada y respaldar en GitHub
+				\item Curva en terminal: guía breve de comandos en el repositorio
+			\end{itemize}
+		\end{columns}
+	\end{frame}
+	
+	% ===================== 11. DEMO 1 ====================================
+	\begin{frame}[fragile]{N-01 y RF-01 en formato \texttt{.sdoc}}{Parte D · Demostración}
+		\begin{columns}[T]
+			\column{0.45\textwidth}
+			\etiqueta{Necesidad}
+			\begin{lstlisting}[style=sdoc]
+				[DOCUMENT]
+				TITLE: Pauly Creative's Craft
+				
+				[REQUIREMENT]
+				UID: N-01
+				TAGS: Necesidad
+				TITLE: Seguimiento de pedidos
+				STATEMENT: >>>
+				PI-01 necesita conocer el estado
+				de cada pedido personalizado,
+				desde la solicitud hasta la
+				entrega.
+				<<<
+			\end{lstlisting}
+			\column{0.47\textwidth}
+			\etiqueta{Requisito funcional}
+			\begin{lstlisting}[style=sdoc]
+				[REQUIREMENT]
+				UID: RF-01
+				TAGS: Funcional
+				TITLE: Registrar pedido
+				STATEMENT: >>>
+				El sistema debe permitir a PI-01
+				registrar un pedido personalizado
+				con cliente, descripción, fecha de
+				entrega, precio y estado inicial.
+				<<<
+				RELATIONS:
+				- TYPE: Parent
+				VALUE: N-01
+			\end{lstlisting}
+		\end{columns}
+	\end{frame}
+	
+	% ===================== 12. DEMO 2 ====================================
+	\begin{frame}[fragile]{CP-01 y comandos}{Parte D · Demostración}
+		\begin{columns}[T]
+			\column{0.58\textwidth}
+			\begin{lstlisting}[style=sdoc]
+				[REQUIREMENT]
+				UID: CP-01
+				TAGS: Prueba
+				TITLE: Registrar pedido con datos válidos
+				STATEMENT: >>>
+				Dado que PI-01 ingresa cliente, descripción, fecha y precio
+				válidos, cuando guarda el pedido, entonces el sistema lo
+				registra con estado "Solicitado".
+				<<<
+				RELATIONS:
+				- TYPE: Parent
+				VALUE: RF-01
+			\end{lstlisting}
+			\column{0.36\textwidth}
+			\etiqueta{Comandos}
+			\begin{lstlisting}[style=shell]
+				pip install strictdoc
+				strictdoc --version
+				strictdoc export .
+				strictdoc server .
+			\end{lstlisting}
+			\vspace{8pt}
+			\etiqueta{Cadena de trazabilidad}
+			{\small N-01 $\leftarrow$ RF-01 $\leftarrow$ CP-01\par}
+		\end{columns}
+	\end{frame}
+	
+	% ===================== 13. CAPTURAS ==================================
+	\begin{frame}{Resultados en StrictDoc}{Parte D · Demostración}
+		\begin{columns}[T]
+			\column{0.47\textwidth}
+			\centering
+			\captura{evidencias/captura-export-html.png}{documento exportado con N-01, RF-01 y CP-01}\par
+			{\color{gris}\scriptsize Figura 1. Documento exportado en HTML}
+			\column{0.47\textwidth}
+			\centering
+			\captura{evidencias/captura-trazabilidad.png}{vista de trazabilidad N-01, RF-01, CP-01}\par
+			{\color{gris}\scriptsize Figura 2. Vista de trazabilidad}
+		\end{columns}
+		\vspace{8pt}
+		{\color{gris}\scriptsize Repositorio: \texttt{\RepoURL}}
+	\end{frame}
+	
+	% ===================== 14. CONCLUSIONES ==============================
+	\begin{frame}{Conclusiones}{Cierre}
+		\vspace{4pt}
+		\begin{columns}[T]
+			\column{0.45\textwidth}
+			\conc{01}{Entrevista y observación se complementan: lo declarado frente a lo realmente hecho.}
+			\conc{02}{Los cuestionarios a clientes amplían el alcance de los requisitos.}
+			\column{0.45\textwidth}
+			\conc{03}{Las herramientas CASE aportan madurez; StrictDoc aporta ligereza, versionado y trazabilidad automática.}
+			\conc{04}{Para Pauly Creative's Craft, StrictDoc es adecuada, mitigando sus riesgos.}
+		\end{columns}
+	\end{frame}
+	
+	% ===================== 15. USO DE IA =================================
+	\begin{frame}{Declaración de uso de IA como apoyo}{Normativa UTEQ}
+		\begin{columns}[T]
+			\column{0.44\textwidth}
+			\etiqueta{Herramienta}\small Claude (Anthropic), interfaz web.\par\vspace{8pt}
+			\etiqueta{Versión}\small Claude Sonnet 5.5, noviembre de 2026.\par\vspace{8pt}
+			\etiqueta{Propósito}\small Apoyo en la estructura de la presentación, la redacción inicial y el código LaTeX/Beamer.
+			\column{0.46\textwidth}
+			\etiqueta{Verificación}\small Contraste de las fuentes bibliográficas, prueba real de StrictDoc y revisión del contenido frente al PFC por el estudiante.\par\vspace{8pt}
+			\etiqueta{Responsabilidad}\small El contenido final es responsabilidad del estudiante.
+		\end{columns}
+	\end{frame}
+	
+	% ===================== 16. REFERENCIAS ===============================
+	\begin{frame}[allowframebreaks]{Referencias}{Formato IEEE}
+		\footnotesize
+		\bibliographystyle{IEEEtran}
+		\bibliography{referencias}
+	\end{frame}
+	
 \end{document}
